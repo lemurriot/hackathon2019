@@ -1,6 +1,5 @@
 .environment-card {
     width: 48%;
-    border: .5px solid #adadad;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -8,7 +7,7 @@
     text-align: center;
     padding: .5%;
     margin: .5%;
-    box-shadow: 1px 1px 3px black;
+    box-shadow: 1px 1px 3px #464242d4;
 }
 .name {
     font-size: 15px;

@@ -4,6 +4,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    background-color: #1d1d1d;
+    color: white;
 }
 .dry-time-container-outer {
     position: absolute;
@@ -16,30 +18,38 @@
     text-align: center;
 }
 .dry-time-card {
-    min-height: 84vh;
+    min-height: 92vh;
     width: 49%;
     padding: 3%;
     position: relative;
 }
 .dry-time-card h2 { 
+    font-size: 35px;
     text-align: center;
     font-family: 'Raleway', sans-serif;
 }
+h3 {
+    font-size: 30px;
+    font-family: 'Raleway', sans-serif;
+}
 .dry-time-card-left {
-    border-right: 1px solid black;
+    border-right: 1px solid #6b3667;
 }
 .info-items {
     display: flex;
     flex-wrap: wrap;
 }
 .time-to-dry {
-    background-color: white;
-    height: 200px;
-    width: 200px;
+    background-color: #e05ce8;
+    text-shadow: 1px 1px 1px #943f3f;
+    height: 265px;
+    width: 265px;
     display: flex; 
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    box-shadow: 1px 2px 2px black;
+    border: 2px solid #653761;
+    font-size: 40px;
+    color: black;
 }

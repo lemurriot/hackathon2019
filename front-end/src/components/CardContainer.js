@@ -88,7 +88,7 @@ export default class CardContainer extends Component {
 						{insideInfo}
 					</div>
 					<div className="dry-time-container-outer">
-						<h3>Time to dry</h3>
+						<h3>Time to dry...</h3>
 						<div className="time-to-dry">
 							<span>{insideDrytime[0]} Hours</span>
 							<span>{insideDrytime[1]} Minutes</span>
@@ -101,7 +101,7 @@ export default class CardContainer extends Component {
 						{outsideInfo}
 					</div>
 					<div className="dry-time-container-outer">
-						<h3>Time to dry</h3>
+						<h3>Time to dry...</h3>
 						<div className="time-to-dry">
 							{outsideDrytime[0] === 0 ? null : (
 								<span>
