@@ -4,7 +4,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    background-color: #1d1d1d;
+    background-color: #413d8a;
     color: white;
 }
 .dry-time-container-outer {
@@ -33,7 +33,7 @@ h3 {
     font-family: 'Raleway', sans-serif;
 }
 .dry-time-card-left {
-    border-right: 1px solid #6b3667;
+    border-right: 1px solid #0c070c;
 }
 .info-items {
     display: flex;

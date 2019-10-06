@@ -74,7 +74,7 @@ export default class App extends Component {
         const rm_temp = Number(res.last_value).toFixed(1)
         const { current_rm_temp } = this.state
         this.setState({
-          current_rm_temp:{name: current_rm_temp.name, metric_qualifier: current_rm_temp.metric_qualifier, metric: rm_temp }
+          current_rm_temp:{name: current_rm_temp.name, metric_qualifier: current_rm_temp.metric_qualifier, metric: current_rm_temp.metric }
         })
       }).catch(error => {
         console.log(error)
