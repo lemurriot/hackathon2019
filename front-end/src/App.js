@@ -111,25 +111,25 @@ export default class App extends Component {
    
     return (
       <>
-        <Header />
-        <main className="main-container">
+        
+        {/* <main className="main-container"> */}
           {showError}
-          <CardContainer 
-            insideData={insideData}
-            outsideData={outsideData}
-          />
+     
           <Switch>
-          {/* <Route 
+          <Route 
               exact
-              path="/"
+              path="/login"
               component={SplashPage}
-            /> */}
-            {/* <Route 
+            />
+            <Route 
               path="/main"
-              component={Main}
-            /> */}
+              component= {() =>  <CardContainer 
+                insideData={insideData}
+                outsideData={outsideData}
+              />}
+            />
           </Switch>
-        </main>
+        {/* </main> */}
       </>
     );
   }
