@@ -3,12 +3,22 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+.dry-time-container-outer {
+    position: absolute;
+    bottom: 3%;
+}
 .dry-time-card {
+    min-height: 84vh;
     width: 49%;
     padding: 3%;
+    position: relative;
 }
 .dry-time-card-left {
     border-right: 1px solid black;
+}
+.info-items {
+    display: flex;
+    flex-wrap: wrap;
 }
 .time-to-dry {
     background-color: white;
