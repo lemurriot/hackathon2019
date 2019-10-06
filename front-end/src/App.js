@@ -104,14 +104,18 @@ export default class App extends Component {
     const showError = this.state.error ? <div className="error-msg">{this.state.error.message}</div> : ''
     const { current_ext_temp, current_rm_temp, current_ext_humidity, current_rm_humidity,  current_wind } = this.state
     // const cardData = [ current_ext_humidity, current_rm_humidity, current_rm_temp, current_ext_temp, current_wind ]
-    const cardData = [current_ext_temp, current_rm_temp, current_ext_humidity, current_rm_humidity,  current_wind]
+    const insideData = [ current_rm_temp,  current_rm_humidity  ]
+    const outsideData=[current_ext_temp, current_ext_humidity,current_wind]
    
     return (
       <>
         <Header />
         <main className="main-container">
           {showError}
-          <CardContainer info={cardData}/>
+          <CardContainer insideData={insideData}
+          outsideData={outsideData}
+          
+          />
           <Switch>
           <Route 
               path="/page-two"
