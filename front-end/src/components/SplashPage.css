@@ -10,6 +10,8 @@
     align-items: center;
     justify-content: center;
     color:white;
+    font-family: 'Raleway', sans-serif;
+
 }
 .LoginPage {
     
@@ -28,13 +30,18 @@
   
   .LoginPage p {
     line-height:140%;
+    text-align: center;
+    font-size: 1.5em;
   }
   
   .LoginPage h2 {
       margin-top:10px;
     text-align: center;
-    font-size:  2em;
+    font-size:  4em;
     margin-bottom: 10px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+
   }
   
   .LoginForm {
@@ -45,11 +52,10 @@
   .LoginForm form {
     margin: auto;
   }
-  .LoginPage p{
-      text-align: center;
-  }
+ 
+
   .LoginForm label {
-    font-size: 18px;
+    font-size: 1.25em;
     text-align: left;
   }
   .padded{
@@ -61,6 +67,7 @@
    
     margin-bottom: 10px;
     width: 100%;
+    height:30px;
   }
   
   .LoginForm button {
@@ -83,3 +90,13 @@
   .LoginForm button:hover {
     background-color: #000;
   }
+ .LoginTitle{
+   display:flex;
+   justify-content: center;
+   max-height: 500px;
+
+ }
+ .LoginTitle img{
+     height: 100px;
+     margin-right: 20px;
+ }
