@@ -7,7 +7,7 @@ import Clock from './Clock'
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export default function Header() {
-    const user = "User"
+    const user = "Margaret"
     return (
         <div className="app-header">
             <div className="brand">
