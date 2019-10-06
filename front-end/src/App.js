@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import './App.css'
 import config from './config'
-import { Switch, Route } from 'react-router-dom'
+// import { Switch, Route } from 'react-router-dom'
 import Header from './components/Header'
 import CardContainer from './components/CardContainer'
-import PageTwo from './components/PageTwo'
+// import PageTwo from './components/PageTwo'
 
 export default class App extends Component {
   constructor(props){
@@ -12,7 +12,7 @@ export default class App extends Component {
     this.state = {
       current_rm_temp: {
         metric: null,
-        metric_qualifier: '&deg;F',
+        metric_qualifier: '\u00b0 F',
         name:"Current Room Temperature"
       },
       current_rm_humidity: {
@@ -22,7 +22,7 @@ export default class App extends Component {
       },
       current_ext_temp:  {
         metric: null,
-        metric_qualifier: '&deg;F',
+        metric_qualifier: '\u00b0 F',
         name:"Current External Temperature"
       },
       current_ext_humidity:  {
@@ -47,14 +47,15 @@ export default class App extends Component {
         }
         return res.json()
       }).then(res => {
-        console.log(res)
+        // console.log(res)
+        const { current_ext_humidity, current_ext_temp, current_wind } = this.state
         const ext_humidity = Number(res.list[0].main.humidity).toFixed(1)
         const ext_temp = Number(res.list[0].main.temp).toFixed(1)
         const wind = Number(res.list[0].wind.speed).toFixed(1)
         this.setState({ 
-          current_ext_humidity: {name:this.state.current_ext_humidity.name, metric_qualifier: this.state.metric_qualifier, metric: ext_humidity},
-          current_ext_temp: {name: this.state.current_ext_temp.name, metric_qualifier: this.state.metric_qualifier, metric: ext_temp},
-          current_wind: {name: this.state.current_wind.name, metric: wind}
+          current_ext_humidity: {name: current_ext_humidity.name, metric_qualifier: current_ext_humidity.metric_qualifier, metric: ext_humidity},
+          current_ext_temp: {name: current_ext_temp.name, metric_qualifier: current_ext_temp.metric_qualifier, metric: ext_temp},
+          current_wind: {name: current_wind.name, metric: wind, metric_qualifier: current_wind.metric_qualifier}
         })
       }).catch(error => {
         console.log(error)
@@ -71,8 +72,9 @@ export default class App extends Component {
       }).then(res => {
         // console.log(res)
         const rm_temp = Number(res.last_value).toFixed(1)
+        const { current_rm_temp } = this.state
         this.setState({
-          current_rm_temp:{name: this.state.current_rm_temp.name, metric_qualifier: this.state.metric_qualifier, metric: rm_temp }
+          current_rm_temp:{name: current_rm_temp.name, metric_qualifier: current_rm_temp.metric_qualifier, metric: rm_temp }
         })
       }).catch(error => {
         console.log(error)
@@ -89,8 +91,9 @@ export default class App extends Component {
       }).then(res => {
         // console.log(res)
         const rm_humidity = Number(res.last_value).toFixed(1)
+        const { current_rm_humidity } = this.state
         this.setState({
-          current_rm_humidity: {name: this.state.current_rm_humidity.name, metric_qualifier: this.state.metric_qualifier, metric: rm_humidity}
+          current_rm_humidity: {name: current_rm_humidity.name, metric_qualifier: current_rm_humidity.metric_qualifier, metric: rm_humidity}
         })
       }).catch(error => {
         console.log(error)
@@ -103,25 +106,24 @@ export default class App extends Component {
   render() {
     const showError = this.state.error ? <div className="error-msg">{this.state.error.message}</div> : ''
     const { current_ext_temp, current_rm_temp, current_ext_humidity, current_rm_humidity,  current_wind } = this.state
-    // const cardData = [ current_ext_humidity, current_rm_humidity, current_rm_temp, current_ext_temp, current_wind ]
-    const insideData = [ current_rm_temp,  current_rm_humidity  ]
-    const outsideData=[current_ext_temp, current_ext_humidity,current_wind]
+    const insideData = [ current_rm_temp, current_rm_humidity  ]
+    const outsideData=[current_ext_temp, current_ext_humidity, current_wind]
    
     return (
       <>
         <Header />
         <main className="main-container">
           {showError}
-          <CardContainer insideData={insideData}
-          outsideData={outsideData}
-          
+          <CardContainer 
+            insideData={insideData}
+            outsideData={outsideData}
           />
-          <Switch>
+          {/* <Switch>
           <Route 
               path="/page-two"
               component={PageTwo}
             />
-          </Switch>
+          </Switch> */}
         </main>
       </>
     );

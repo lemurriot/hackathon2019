@@ -3,3 +3,10 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+.dry-time-card {
+    width: 49%;
+    padding: 3%;
+}
+.dry-time-card-left {
+    border-right: 1px solid black;
+}

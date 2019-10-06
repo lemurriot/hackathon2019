@@ -24,11 +24,15 @@ export default class Clock extends Component {
     }
   
     render() {
-      const hoursDegrees = this.state.date.getHours();
-      const minutesDegrees = this.state.date.getMinutes();
+      const {date} = this.state
+      const hoursDegrees = date.getHours();
+      const minutesDegrees = date.getMinutes();
+
+      const renderHours = hoursDegrees === 0 ? '00' : hoursDegrees
+      const renderMinutes = minutesDegrees < 10 ? '0' + minutesDegrees : minutesDegrees
 
       return(
-        <div>{hoursDegrees}:{minutesDegrees}</div>
+        <div>{renderHours}:{renderMinutes}</div>
       )
     }
 }

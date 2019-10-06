@@ -6,7 +6,7 @@ export default function Header() {
     const user = "User"
     return (
         <div className="app-header">
-            Hello {user}
+            Hello {user} 
             <Clock />
         </div>
     )
