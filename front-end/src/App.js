@@ -3,14 +3,33 @@ import './App.css'
 import config from './config'
 import { Switch, Route } from 'react-router-dom'
 import Header from './components/Header'
-import DoughnutRender from './components/DoughnutRender'
+import CardContainer from './components/CardContainer'
 import PageTwo from './components/PageTwo'
 
 export default class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      current_temp: '',
+      current_rm_temp: {
+        metric: null,
+        name:"Current Room Temperature"
+      },
+      current_rm_humidity: {
+        metric: null,
+        name:"Current Humidity"
+      },
+      current_ext_temp:  {
+        metric: null,
+        name:"Current External Temperature"
+      },
+      current_ext_humidity:  {
+        metric: null,
+        name:"Current External Humidity"
+      },
+      current_wind:  {
+        metric: null,
+        name:"Current Wind Speed"
+      },
       error: null
     }
   }
@@ -23,23 +42,50 @@ export default class App extends Component {
         }
         return res.json()
       }).then(res => {
-        // console.log(res)
+        console.log(res)
+        const ext_humidity = Number(res.list[0].main.humidity)
+        const ext_temp = Number(res.list[0].main.temp)
+        const wind = Number(res.list[0].wind.speed)
+        this.setState({ 
+          current_ext_humidity: {name:this.state.current_ext_humidity.name, metric: ext_humidity},
+          current_ext_temp: {name: this.state.current_ext_temp.name, metric: ext_temp},
+          current_wind: {name: this.state.current_wind.name, metric: wind}
+        })
       }).catch(error => {
         console.log(error)
         this.setState({
           error
         })
       })
-    fetch(`${config.IOT_ENDPOINT_URL}${config.IOT_KEY}`)
+    fetch(`${config.IOT_ENDPOINT_URL}/temperature?x-aio-key=${config.IOT_KEY}`)
       .then(res => {
         if (!res.ok) {
           throw new Error(res.status)
         }
         return res.json()
       }).then(res => {
-        console.log(res)
+        // console.log(res)
+        const rm_temp = Number(res.last_value).toFixed(2)
         this.setState({
-          current_temp: res.last_value
+          current_rm_temp:{name: this.state.current_rm_temp.name, metric: rm_temp }
+        })
+      }).catch(error => {
+        console.log(error)
+        this.setState({
+          error
+        })
+      })
+      fetch(`${config.IOT_ENDPOINT_URL}/humidity?x-aio-key=${config.IOT_KEY}`)
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.status)
+        }
+        return res.json()
+      }).then(res => {
+        // console.log(res)
+        const rm_humidity = Number(res.last_value).toFixed(2)
+        this.setState({
+          current_rm_humidity: {name: this.state.current_rm_humidity.name, metric: rm_humidity}
         })
       }).catch(error => {
         console.log(error)
@@ -51,13 +97,16 @@ export default class App extends Component {
 
   render() {
     const showError = this.state.error ? <div className="error-msg">{this.state.error.message}</div> : ''
+    const { current_ext_temp, current_rm_temp, current_ext_humidity, current_rm_humidity,  current_wind } = this.state
+    // const cardData = [ current_ext_humidity, current_rm_humidity, current_rm_temp, current_ext_temp, current_wind ]
+    const cardData = [current_ext_temp, current_rm_temp, current_ext_humidity, current_rm_humidity,  current_wind]
    
     return (
       <>
         <Header />
-        <main>
+        <main className="main-container">
           {showError}
-          <h2>{this.state.current_temp}</h2>
+          <CardContainer info={cardData}/>
           <Switch>
           <Route 
               path="/page-two"
@@ -66,7 +115,7 @@ export default class App extends Component {
           </Switch>
         </main>
       </>
-    )
+    );
   }
 }
 

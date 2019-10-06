@@ -1,5 +1,7 @@
-
-
 .error-message {
   color: red;
+}
+
+.main-container {
+  padding: 5%;
 }
