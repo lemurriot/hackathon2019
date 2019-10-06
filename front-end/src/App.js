@@ -12,22 +12,27 @@ export default class App extends Component {
     this.state = {
       current_rm_temp: {
         metric: null,
+        metric_qualifier: '&deg;F',
         name:"Current Room Temperature"
       },
       current_rm_humidity: {
         metric: null,
+        metric_qualifier: '%',
         name:"Current Humidity"
       },
       current_ext_temp:  {
         metric: null,
+        metric_qualifier: '&deg;F',
         name:"Current External Temperature"
       },
       current_ext_humidity:  {
         metric: null,
+        metric_qualifier: '%',
         name:"Current External Humidity"
       },
       current_wind:  {
         metric: null,
+        metric_qualifier: 'm/s',
         name:"Current Wind Speed"
       },
       error: null
@@ -43,12 +48,12 @@ export default class App extends Component {
         return res.json()
       }).then(res => {
         console.log(res)
-        const ext_humidity = Number(res.list[0].main.humidity)
-        const ext_temp = Number(res.list[0].main.temp)
-        const wind = Number(res.list[0].wind.speed)
+        const ext_humidity = Number(res.list[0].main.humidity).toFixed(1)
+        const ext_temp = Number(res.list[0].main.temp).toFixed(1)
+        const wind = Number(res.list[0].wind.speed).toFixed(1)
         this.setState({ 
-          current_ext_humidity: {name:this.state.current_ext_humidity.name, metric: ext_humidity},
-          current_ext_temp: {name: this.state.current_ext_temp.name, metric: ext_temp},
+          current_ext_humidity: {name:this.state.current_ext_humidity.name, metric_qualifier: this.state.metric_qualifier, metric: ext_humidity},
+          current_ext_temp: {name: this.state.current_ext_temp.name, metric_qualifier: this.state.metric_qualifier, metric: ext_temp},
           current_wind: {name: this.state.current_wind.name, metric: wind}
         })
       }).catch(error => {
@@ -65,9 +70,9 @@ export default class App extends Component {
         return res.json()
       }).then(res => {
         // console.log(res)
-        const rm_temp = Number(res.last_value).toFixed(2)
+        const rm_temp = Number(res.last_value).toFixed(1)
         this.setState({
-          current_rm_temp:{name: this.state.current_rm_temp.name, metric: rm_temp }
+          current_rm_temp:{name: this.state.current_rm_temp.name, metric_qualifier: this.state.metric_qualifier, metric: rm_temp }
         })
       }).catch(error => {
         console.log(error)
@@ -83,9 +88,9 @@ export default class App extends Component {
         return res.json()
       }).then(res => {
         // console.log(res)
-        const rm_humidity = Number(res.last_value).toFixed(2)
+        const rm_humidity = Number(res.last_value).toFixed(1)
         this.setState({
-          current_rm_humidity: {name: this.state.current_rm_humidity.name, metric: rm_humidity}
+          current_rm_humidity: {name: this.state.current_rm_humidity.name, metric_qualifier: this.state.metric_qualifier, metric: rm_humidity}
         })
       }).catch(error => {
         console.log(error)
