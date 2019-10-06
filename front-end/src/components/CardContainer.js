@@ -85,8 +85,10 @@ export default class CardContainer extends Component {
 					{insideInfo}
 					<div>
 						<h3>Time to dry</h3>
-						<span>{insideDrytime[0]} Hours</span>
-						<span>{insideDrytime[1]} Minutes</span>
+						<div className="time-to-dry">
+							<span>{insideDrytime[0]} Hours</span>
+							<span>{insideDrytime[1]} Minutes</span>
+						</div>
 					</div>
 				</div>
 				<div className='dry-time-card dry-time-card-right'>
@@ -94,22 +96,24 @@ export default class CardContainer extends Component {
 					{outsideInfo}
 					<div>
 						<h3>Time to dry</h3>
-						{outsideDrytime[0] === 0 ? null : (
-							<span>
-								{outsideDrytime[0]}{' '}
-								{outsideDrytime[0] <= 1
-									? 'Hour'
-									: 'Hours'}
-							</span>
-						)}
-						{outsideDrytime[1] === 0 ? null : (
-							<span>
-								{outsideDrytime[1]}{' '}
-								{outsideDrytime[1] <= 1
-									? 'Minute'
-									: 'Minutes'}
-							</span>
-						)}
+						<div className="time-to-dry">
+							{outsideDrytime[0] === 0 ? null : (
+								<span>
+									{outsideDrytime[0]}{' '}
+									{outsideDrytime[0] <= 1
+										? 'Hour'
+										: 'Hours'}
+								</span>
+							)}
+							{outsideDrytime[1] === 0 ? null : (
+								<span>
+									{outsideDrytime[1]}{' '}
+									{outsideDrytime[1] <= 1
+										? 'Minute'
+										: 'Minutes'}
+								</span>
+							)}
+						</div>
 					</div>
 				</div>
 			</section>
