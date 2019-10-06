@@ -80,8 +80,8 @@ console.log(`hello drytime`, insideDrytime)
                 {outsideInfo}
                 <div>
                     <h3>Time to dry</h3>
-                    <span>{outsideDrytime[0]} Hours</span>
-                    <span>{outsideDrytime[1]} Minutes</span>
+                   {outsideDrytime[0]===0? null: <span>{outsideDrytime[0]} {outsideDrytime[0]<= 1 ? "Hour" : "Hours"}</span>}
+                   { outsideDrytime[1]===0? null : <span>{outsideDrytime[1]} {outsideDrytime[1]<= 1 ? "Minute" : "Minutes"}</span>}
                 </div>
                 </div>
                {/* {cardList} */}
