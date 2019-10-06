@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './CardContainer.css'
 import EnvironmentMetrics from './EnvironmentMetrics.js'
-
+import Header from './Header'
 export default class CardContainer extends Component {
 	constructor() {
 		super()
@@ -43,8 +43,8 @@ export default class CardContainer extends Component {
 		const mass = 0.075
 		const surfaceArea = 0.75
 		const t = mass / (rhoe * surfaceArea * 60)
-		const hours = Math.floor(t / 60)
-		const minutes = Math.floor(t % 60)
+		const hours = Math.ceil(t / 60)
+		const minutes = Math.ceil(t % 60)
 		const time = [hours, minutes]
 		return time
 	}
@@ -79,6 +79,8 @@ export default class CardContainer extends Component {
 			return <EnvironmentMetrics key={i} name={data.name} metric={data.metric} qualifier={data.metric_qualifier}/>
 		})
 		return (
+			<>
+			<Header />
 			<section className='card-container'>
 				<div className='dry-time-card dry-time-card-left'>
 					<h2>Inside Drying</h2>
@@ -121,6 +123,7 @@ export default class CardContainer extends Component {
 					</div>
 				</div>
 			</section>
+			</>
 		)
 	}
 }
