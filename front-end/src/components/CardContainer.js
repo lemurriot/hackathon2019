@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './CardContainer.css'
-import Environment from './Environment.js'
+import EnvironmentMetrics from './EnvironmentMetrics.js'
 
 export default class CardContainer extends Component {
 	constructor() {
@@ -73,17 +73,19 @@ export default class CardContainer extends Component {
 		// )
 		// console.log(`hello drytime`, insideDrytime)
 		const insideInfo = this.props.insideData.map((data, i) => {
-			return <Environment key={i} name={data.name} metric={data.metric} qualifier={data.metric_qualifier}/>
+			return <EnvironmentMetrics key={i} name={data.name} metric={data.metric} qualifier={data.metric_qualifier}/>
 		})
 		const outsideInfo = this.props.outsideData.map((data, i) => {
-			return <Environment key={i} name={data.name} metric={data.metric} qualifier={data.metric_qualifier}/>
+			return <EnvironmentMetrics key={i} name={data.name} metric={data.metric} qualifier={data.metric_qualifier}/>
 		})
 		return (
 			<section className='card-container'>
 				<div className='dry-time-card dry-time-card-left'>
 					<h2>Inside Drying</h2>
-					{insideInfo}
-					<div>
+					<div className="info-items">
+						{insideInfo}
+					</div>
+					<div className="dry-time-container-outer">
 						<h3>Time to dry</h3>
 						<div className="time-to-dry">
 							<span>{insideDrytime[0]} Hours</span>
@@ -93,8 +95,10 @@ export default class CardContainer extends Component {
 				</div>
 				<div className='dry-time-card dry-time-card-right'>
 					<h2>Outside Drying</h2>
-					{outsideInfo}
-					<div>
+					<div className="info-items">
+						{outsideInfo}
+					</div>
+					<div className="dry-time-container-outer">
 						<h3>Time to dry</h3>
 						<div className="time-to-dry">
 							{outsideDrytime[0] === 0 ? null : (

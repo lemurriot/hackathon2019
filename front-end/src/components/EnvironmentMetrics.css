@@ -1,6 +1,7 @@
 .environment-card {
     width: 50%;
 }
+
 .name, .metric {
-    font-size: 10px;
+    font-size: 20px;
 }

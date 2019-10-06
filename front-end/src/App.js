@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import './App.css'
 import config from './config'
-// import { Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import Header from './components/Header'
 import CardContainer from './components/CardContainer'
-// import PageTwo from './components/PageTwo'
+import SplashPage from './components/SplashPage'
 
 export default class App extends Component {
   constructor(props){
@@ -118,12 +118,17 @@ export default class App extends Component {
             insideData={insideData}
             outsideData={outsideData}
           />
-          {/* <Switch>
-          <Route 
-              path="/page-two"
-              component={PageTwo}
-            />
-          </Switch> */}
+          <Switch>
+          {/* <Route 
+              exact
+              path="/"
+              component={SplashPage}
+            /> */}
+            {/* <Route 
+              path="/main"
+              component={Main}
+            /> */}
+          </Switch>
         </main>
       </>
     );
