@@ -5,7 +5,10 @@ export default function SplashPage() {
     return (
         <div role="main" className="LoginPage-Container flexed">
         <div className="LoginPage padded">
+           <div className='LoginTitle '>
+           <img src={require('../images/logo.png') }></img>
           <h2>DryFi</h2>
+          </div>
           <p>
               DryFi is an application that utilizes IOT technology, to help you be more environmentally conscience and save energy and money by drying your clothes less.
           </p>
